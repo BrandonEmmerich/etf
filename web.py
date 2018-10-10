@@ -9,7 +9,7 @@ def get_tickers():
     url = 'https://seekingalpha.com/etfs-and-funds/etf-tables/countries'
     res = requests.get(url)
     root = etree.HTML(res.content)
-    list_of_tickers = root.xpath("//td[@class='eft_or_etn']/span/a/text()")
+    list_of_tickers = root.xpath(settings.XPATH_ETF_TICKER)
 
     return list_of_tickers
 
