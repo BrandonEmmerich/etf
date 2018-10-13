@@ -6,7 +6,7 @@ import web
 
 run_id = int(time.time())
 conn = psycopg2.connect(private.DATABASE_CONNECTION_STRING)
-tickers = web.get_tickers()
+tickers = web.get_tickers_query(conn)
 
 list_of_ids = web.get_existing_data(conn)
 

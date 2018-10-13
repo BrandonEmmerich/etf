@@ -2,3 +2,5 @@
 scratch.py
 private.py
 notes.txt
+*.ipynb
+*.ipynb_checkpoints

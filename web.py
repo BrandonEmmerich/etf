@@ -4,12 +4,20 @@ import psycopg2
 import requests
 import settings
 
-def get_tickers():
+def get_tickers_seed():
     """A seeding function that gets ETF tickers"""
     url = 'https://seekingalpha.com/etfs-and-funds/etf-tables/countries'
     res = requests.get(url)
     root = etree.HTML(res.content)
     list_of_tickers = root.xpath(settings.XPATH_ETF_TICKER)
+
+    return list_of_tickers
+
+def get_tickers_query(conn):
+    '''Get's ETF tickers from the database'''
+    cur = conn.cursor()
+    cur.execute(settings.QUERY_GET_TICKER)
+    list_of_tickers = [tuple_[0] for tuple_ in cur.fetchall()]
 
     return list_of_tickers
 
